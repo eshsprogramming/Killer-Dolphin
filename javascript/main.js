@@ -10,7 +10,7 @@ var hud = new Kinetic.Layer();
 
 var bottlesheet = new Image();
 bottlesheet.onload = function(){
-    bottles[0] = new Bottle(0,0,1,1);
+    bottles[0] = new Bottle(0,0,1000,1);
     bottles[1] = new Bottle(0,64,1,1);
     start();
 }

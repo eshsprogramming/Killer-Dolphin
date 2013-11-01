@@ -20,6 +20,11 @@ function Bottle(x,y,dx,dy){
 		this.sprite.setY(this.sprite.getY()+t*dy);
 	};
 }
+function loop(){
+	console.log("loop")
+	for(var i = 0; i < bottles.length;i++)
+  			bottles[i].step(.033);
+}
 var number = 1;
 function start(){
 	number--
@@ -31,5 +36,6 @@ function start(){
   		stage.add(hud);
   		for(var i = 0; i < bottles.length;i++)
  			bottles[i].sprite.start()
+ 		window.setInterval(loop,30)
 	}
 }

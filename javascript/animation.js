@@ -1,3 +1,7 @@
+var bottleA = {
+  anims:[{name: 'fly', slides:[0,2,1,3,4,6,5,7]}],
+         columns:4,rows:2,width:256,height:256};
+var bottleanim = AnimationSet(bottleA);
 function AnimationSet(data){
   var out = {};
   for(var i = 0; i < data.anims.length; i++){

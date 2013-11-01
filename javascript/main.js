@@ -15,3 +15,22 @@ bottlesheet.onload = function(){
     start();
 }
 bottlesheet.src = "res/bottle.png"
+
+var dolphinsheet = new Image();
+var dolphin;
+dolphinsheet.onload = function(){
+    dolphin = new Kinetic.Sprite({
+    	x: 200,
+    	y:100,
+    	image: dolphinsheet,
+    	animation: 'swim',
+    	animations: dolphinanim,
+    	frameRate: 6,
+    	width: 300,
+    	height: 60,
+    	scaleX: .5,
+    	scaleY: .5
+	});
+    start();
+}
+dolphinsheet.src = "res/dolphin.png"

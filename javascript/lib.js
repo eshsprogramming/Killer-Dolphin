@@ -23,19 +23,22 @@ function Bottle(x,y,dx,dy){
 function loop(){
 	console.log("loop")
 	for(var i = 0; i < bottles.length;i++)
-  			bottles[i].step(.033);
+  			bottles[i].step(.03);
 }
-var number = 1;
+var number = 2;
 function start(){
+	console.log(number);
 	number--
 	if(number <= 0){
 		stage.add(ground);
+		playerLayer.add(dolphin);
   		stage.add(playerLayer);
   		for(var i = 0; i < bottles.length;i++)
   			hud.add(bottles[i].sprite);
   		stage.add(hud);
   		for(var i = 0; i < bottles.length;i++)
- 			bottles[i].sprite.start()
+ 			bottles[i].sprite.start();
+ 		dolphin.start();
  		window.setInterval(loop,30)
 	}
 }

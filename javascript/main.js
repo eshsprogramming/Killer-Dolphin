@@ -32,11 +32,12 @@ dolphinsheet.onload = function(){
     start();
 }
 var sharksheet = new Image();
-var enemy;
+var enemies;
 sharksheet.onload = function(){
     enemy = new Enemy(200,200);
     enemy.sprite.afterFrame(2, function(){
     	play_multi_sound('bite',0);
+
     	throw "Biting";
     });
     start();
@@ -46,7 +47,6 @@ dolphinsheet.src = "res/dolphin.png"
 sharksheet.src = "res/shark.png"
 backgroundsheet.src = "res/background.png"
 
-var projectiles = [];
 function Bottle(x,y,dx,dy){
 	this.sprite = new Kinetic.Sprite({
     	x: x,
@@ -145,7 +145,7 @@ function Enemy(x,y){
 var sounds = [];
 function init_sound(type, channels, volume){
         sounds[type]=[]
-        for (a=0;a<channels;a++) {                                                                        
+        for (var a=0;a<channels;a++) {                                                                        
                 sounds[type][a] = {};
                 sounds[type][a]['channel'] = new Audio();                
                 sounds[type][a]['channel'].src = document.getElementById(type).src;        
@@ -157,7 +157,7 @@ function init_sound(type, channels, volume){
 }
 
 function play_multi_sound(s, start) {
-        for (a=0;a<sounds[s].length;a++) {
+        for (var a=0;a<sounds[s].length;a++) {
                 thistime = new Date();
                 temp = sounds[s]
                 if (sounds[s][a]['finished'] < thistime.getTime()) {                        // is this channel finished?

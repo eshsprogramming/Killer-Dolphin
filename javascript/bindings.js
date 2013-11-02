@@ -23,9 +23,9 @@ bindingsDown[space]=function(){
   		ty-=100;
   	if(keys[s])//down
   		ty+=100;
-  	var temp = new Bottle(player.x+player.sprite.getWidth()/2*player.sprite.getScaleX(),player.y+player.sprite.getHeight()/2,tx,ty);
+  	var temp = new player.weapon(player.x+player.sprite.getWidth()/2*player.sprite.getScaleX(),player.y+player.sprite.getHeight()/2,tx,ty);
   	temp.sprite.setX(temp.sprite.getX()-temp.sprite.getWidth()*temp.sprite.getScaleX()/2)
   	hud.add(temp.sprite);
   	temp.sprite.start();
-	bottles.push(temp);
+	projectiles.push(temp);
 }

@@ -1,11 +1,22 @@
 //Library
-
 function loop(){
 	var t = .03;
-	console.log("loop")
-	for(var i = 0; i < projectiles.length;i++)
+	for(var i = projectiles.length - 1; i >= 0;i--){
   			projectiles[i].step(t);
-  	if(keys[a])//left
+  			if(projectiles[i].sprite.getX() + projectiles[i].sprite.getWidth()*projectiles[i].sprite.getScaleX()< 0 ||
+  				 projectiles[i].sprite.getX() > stage.getWidth()  || projectiles[i].sprite.getY() > stage.getHeight() || 
+  				projectiles[i].sprite.getY() + projectiles[i].sprite.getHeight()*projectiles[i].sprite.getScaleY() < 0){
+  				projectiles[i].sprite.remove()
+  				projectiles.splice(i,1)
+  			}
+  				
+  	}
+  	playerLoop(t);
+}
+function enemyLoop(t){
+}
+function playerLoop(t){
+	if(keys[a])//left
   		player.x-=10;
   	if(keys[w])//up
   		player.y-=10;
@@ -21,8 +32,12 @@ function loop(){
   	player.sprite.setY(player.y);
 }
 var number = 4;
+var enemies = [];
+var projectiles = [];
 function start(){
 	number--
+
+
 	if(number <= 0){
 		ground.add(background);
 		stage.add(ground);

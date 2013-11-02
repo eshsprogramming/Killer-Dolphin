@@ -39,18 +39,24 @@ function start(){
 
 
 	if(number <= 0){
+		enemies[0] = new Enemy(200,200);
+		enemies[0].sprite.afterFrame(2, function(){
+    		play_multi_sound('bite',0);
+    	});
 		ground.add(background);
 		stage.add(ground);
 		playerLayer.add(player.sprite);
-		playerLayer.add(enemy.sprite);
+		for(var i = 0; i < enemies.length;i++)
+  			playerLayer.add(enemies[i].sprite);
   		stage.add(playerLayer);
   		for(var i = 0; i < projectiles.length;i++)
   			hud.add(projectiles[i].sprite);
   		stage.add(hud);
   		for(var i = 0; i < projectiles.length;i++)
  			projectiles[i].sprite.start();
+ 		for(var i = 0; i < enemies.length;i++)
+ 			enemies[i].sprite.start();
  		player.sprite.start();
- 		enemy.sprite.start();
  		window.setInterval(loop,30)
 	}
 }

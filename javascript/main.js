@@ -34,12 +34,6 @@ dolphinsheet.onload = function(){
 var sharksheet = new Image();
 var enemies;
 sharksheet.onload = function(){
-    enemy = new Enemy(200,200);
-    enemy.sprite.afterFrame(2, function(){
-    	play_multi_sound('bite',0);
-
-    	throw "Biting";
-    });
     start();
 }
 bottlesheet.src = "res/bottle.png"

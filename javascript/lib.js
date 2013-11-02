@@ -70,6 +70,10 @@ function loop(){
   		player.x+=10;
   	if(keys[s])//down
   		player.y+=10;
+  	if(!keys[a]&&!keys[w]&&!keys[s]&&!keys[d]&&player.sprite.getAnimation()!='idle')
+  		player.sprite.setAnimation('idle');
+  	else if(player.sprite.getAnimation()=='idle'&&(keys[a]||keys[w]||keys[s]||keys[d]))
+  		player.sprite.setAnimation('swim');
   	player.sprite.setX(player.x);
   	player.sprite.setY(player.y);
 }

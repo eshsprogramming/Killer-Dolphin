@@ -3,8 +3,8 @@
 function loop(){
 	var t = .03;
 	console.log("loop")
-	for(var i = 0; i < bottles.length;i++)
-  			bottles[i].step(t);
+	for(var i = 0; i < projectiles.length;i++)
+  			projectiles[i].step(t);
   	if(keys[a])//left
   		player.x-=10;
   	if(keys[w])//up
@@ -20,20 +20,20 @@ function loop(){
   	player.sprite.setX(player.x);
   	player.sprite.setY(player.y);
 }
-var number = 3;
+var number = 4;
 function start(){
-	console.log(number);
 	number--
 	if(number <= 0){
+		ground.add(background);
 		stage.add(ground);
 		playerLayer.add(player.sprite);
 		playerLayer.add(enemy.sprite);
   		stage.add(playerLayer);
-  		for(var i = 0; i < bottles.length;i++)
-  			hud.add(bottles[i].sprite);
+  		for(var i = 0; i < projectiles.length;i++)
+  			hud.add(projectiles[i].sprite);
   		stage.add(hud);
-  		for(var i = 0; i < bottles.length;i++)
- 			bottles[i].sprite.start();
+  		for(var i = 0; i < projectiles.length;i++)
+ 			projectiles[i].sprite.start();
  		player.sprite.start();
  		enemy.sprite.start();
  		window.setInterval(loop,30)

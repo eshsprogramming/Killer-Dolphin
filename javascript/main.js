@@ -8,10 +8,21 @@ var playerLayer = new Kinetic.Layer();
 var ground = new Kinetic.Layer();
 var hud = new Kinetic.Layer();
 
+var bachground;
+var backgroundsheet = new Image();
+backgroundsheet.onload = function(){
+   background = new Kinetic.Image({
+      x: 0,
+      y: 0,
+      image: backgroundsheet,
+      width: 1000,
+      height:400
+    });
+   start();
+}
+
 var bottlesheet = new Image();
 bottlesheet.onload = function(){
-    bottles[0] = new Bottle(0,0,1000,1);
-    bottles[1] = new Bottle(0,64,1,1);
     start();
 }
 var dolphinsheet = new Image();
@@ -24,13 +35,18 @@ var sharksheet = new Image();
 var enemy;
 sharksheet.onload = function(){
     enemy = new Enemy(200,200);
+    enemy.sprite.afterFrame(2, function(){
+    	play_multi_sound('bite',0);
+    	throw "Biting";
+    });
     start();
 }
 bottlesheet.src = "res/bottle.png"
 dolphinsheet.src = "res/dolphin.png"
 sharksheet.src = "res/shark.png"
+backgroundsheet.src = "res/background.png"
 
-var bottles = [];
+var projectiles = [];
 function Bottle(x,y,dx,dy){
 	this.sprite = new Kinetic.Sprite({
     	x: x,
@@ -54,6 +70,7 @@ function Bottle(x,y,dx,dy){
 function Player(x,y){
 	this.x = x;
 	this.y = y;
+	this.weapon = Bottle;
 	this.setX = function(x){
 		this.x = x;
 		this.sprite.setX(x);
@@ -125,3 +142,30 @@ function Enemy(x,y){
     	scaleY: .5
 	});
 }
+var sounds = [];
+function init_sound(type, channels, volume){
+        sounds[type]=[]
+        for (a=0;a<channels;a++) {                                                                        
+                sounds[type][a] = {};
+                sounds[type][a]['channel'] = new Audio();                
+                sounds[type][a]['channel'].src = document.getElementById(type).src;        
+                sounds[type][a]['channel'].load();                        
+                sounds[type][a]['finished'] = -1;
+                if(volume)
+                        sounds[type][a]['channel'].volume = volume;                                        
+        }
+}
+
+function play_multi_sound(s, start) {
+        for (a=0;a<sounds[s].length;a++) {
+                thistime = new Date();
+                temp = sounds[s]
+                if (sounds[s][a]['finished'] < thistime.getTime()) {                        // is this channel finished?
+                        sounds[s][a]['finished'] = thistime.getTime() + document.getElementById(s).duration*1000 + start*1000;
+                        sounds[s][a]['channel'].currentTime = start;
+                        sounds[s][a]['channel'].play();
+                        break;
+                }
+        }
+}
+init_sound('bite',5,.5);

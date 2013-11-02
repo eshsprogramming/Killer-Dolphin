@@ -2,7 +2,8 @@ var bottleA = {
   anims:[{name: 'fly', slides:[0,2,1,3,4,6,5,7]}],
          columns:4,rows:2,width:256,height:256};
 var dolphinA = {
-  anims:[{name: 'swim', slides:[0,1]}],
+  anims:[{name: 'swim', slides:[0,1]},
+         {name: 'idle', slides:[0]}],
          columns:2,rows:1,width:300,height:120};
 var bottleanim = AnimationSet(bottleA);
 var dolphinanim = AnimationSet(dolphinA);

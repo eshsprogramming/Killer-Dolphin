@@ -5,8 +5,14 @@ var dolphinA = {
   anims:[{name: 'swim', slides:[0,1]},
          {name: 'idle', slides:[0]}],
          columns:2,rows:1,width:300,height:120};
+var sharkA = {
+  anims:[{name: 'swim', slides:[0,1]},
+         {name: 'idle', slides:[0]},
+         {name: 'bite', slides:[2,3,4,5]},],
+         columns:2,rows:3,width:300,height:120};
 var bottleanim = AnimationSet(bottleA);
 var dolphinanim = AnimationSet(dolphinA);
+var sharkanim = AnimationSet(sharkA);
 
 function AnimationSet(data){
   var out = {};
